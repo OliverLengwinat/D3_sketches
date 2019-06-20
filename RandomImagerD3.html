@@ -59,14 +59,18 @@
 				// clear the canvas from previous drawing
 				context.clearRect(0, 0, canvas.width, canvas.height);
 				// draw a circle for each datu
-				var centerX = canvas.width / 2;
-      			var centerY = canvas.height / 2;
-      			var radius = 70;
+				for (var i=0; i<100000; i++){
+					var centerX = Math.round(Math.random()*canvas.width);
+					var centerY = Math.round(Math.random()*canvas.height);
+					var radius = Math.round(Math.random()*40);
+					var brightness = Math.round(Math.random()*255);
+					var color = 'rgb('+brightness+', '+brightness+', '+brightness+')';
 
-			  	context.beginPath();
-			  	context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-			  	context.fillStyle = 'green';
-			  	context.fill();
+					context.beginPath();
+					context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+					context.fillStyle = color;
+					context.fill();
+				}
 			}
 
 			function drawD3(){
