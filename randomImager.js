@@ -3,20 +3,9 @@ d3 = d3 || {};
 
     "use strict";
 
-    d3.imageMap = function() {
+	d3.displayImage = function() {
 
-        var height, width, onDragCallback;
-        var container;
-        var canvas, canvasAccessObj, pixelData, circle;
-        var context;
-        var diameter, radius;
-        //var slidingBar = d3.buildSlider();
-        var levels, size;
-        var scale = d3.scale.linear();
-        var currentLvl, imageName, mode, selectionLength;
-        var splitFlag = true;
-
-        var obj = function(selection) {
+		var obj = function(selection) {
 
             //slidingBar.width(diameter)
             //    .height(15)
@@ -41,7 +30,8 @@ d3 = d3 || {};
             })
 
         };
-        obj.buildCanvas = function() {
+
+		obj.buildCanvas = function() {
 
             var img = document.getElementById('myimage');
 
@@ -69,10 +59,33 @@ d3 = d3 || {};
 
                 levels = Math.floor(Math.log2(diameter));
                 currentLvl = levels;
-
-            return obj;
+			    return obj;
 
         };
+
+		obj.setImageSize = function(_) {
+            if (!arguments.length) return size;
+            size = _;
+            return obj;
+        };
+
+	}
+
+    d3.imageMap = function() {
+
+        var height, width, onDragCallback;
+        var container;
+        var canvas, canvasAccessObj, pixelData, circle;
+        var context;
+        var diameter, radius;
+        //var slidingBar = d3.buildSlider();
+        var levels, size;
+        var scale = d3.scale.linear();
+        var currentLvl, imageName, mode, selectionLength;
+        var splitFlag = true;
+
+
+
         obj.onDragCallback = function(_) {
 
 
@@ -223,11 +236,7 @@ d3 = d3 || {};
             mode = _;
             return obj;
         };
-        obj.setImageSize = function(_) {
-            if (!arguments.length) return size;
-            size = _;
-            return obj;
-        };
+
 
         return obj;
     }
