@@ -56,9 +56,18 @@
 					.attr("width", 200)
 					.attr("height", 200);
 
-				sampleSVG.append("circle")
+				for (var i=0; i<10; i++){
+					sampleSVG.append("circle")
 					.style("stroke", "gray")
 					.style("fill", "white")
+					.attr("r", Math.round(Math.random()*40))
+					.attr("cx", Math.round(Math.random()*200))
+					.attr("cy", Math.round(Math.random()*200))
+				}
+
+				var lastCircle = sampleSVG.append("circle")
+					.style("stroke", "gray")
+					.style("fill", "black")
 					.attr("r", 40)
 					.attr("cx", 50)
 					.attr("cy", 50)
@@ -70,14 +79,14 @@
 					//.attr("cx", 30)
 					//.style("fill", "black");
 
-				sampleSVG.append("circle")
-					.style("stroke", "gray")
-					.style("fill", "white")
-					.attr("r", Math.round(Math.random()*40))
-					.attr("cx", Math.round(Math.random()*200))
-					.attr("cy", Math.round(Math.random()*200))
+				lastCircle
+					.transition()
+					.delay(100)
+					.duration(1000)
+					//.attr("r", 10)
+					//.attr("cx", 30)
+					.style("fill", "red")
 			}
-
 		</script>
 		<script>
 
