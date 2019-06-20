@@ -13,10 +13,10 @@
       		<canvas id="input_canvas" width=200 height=200>
           		<img id="input_img" alt="Input pic">
       		</canvas>
-	  		<!--<canvas id="output_canvas" width=200 height=200>
+	  		<canvas id="output_canvas" width=200 height=200>
 				output
           		<img alt="Output pic">
-      		</canvas>-->
+      		</canvas>
 			<div id="output_div"></div>
 		</div>
 
@@ -42,19 +42,39 @@
 							var ctx = input_canvas.getContext("2d");
 							ctx.drawImage(imageInput, 0, 0);
     						input_image_data = ctx.getImageData(0, 0, input_canvas.width, input_canvas.height).data;
-							startDrawing();
+							//drawD3();
+							paintCanvas();
 							//document.getElementById('msg2').innerHTML = "Image data: " + input_image_data.toString();
 						};
 						fileReader.readAsDataURL(selectedFile);
 				}
 			}
 
-			function startDrawing(){
+			function paintCanvas() {
+				var canvas = document.getElementById("output_canvas");
+
+				// get the canvas drawing context
+				const context = canvas.getContext('2d');
+
+				// clear the canvas from previous drawing
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				// draw a circle for each datu
+				var centerX = canvas.width / 2;
+      			var centerY = canvas.height / 2;
+      			var radius = 70;
+
+			  	context.beginPath();
+			  	context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+			  	context.fillStyle = 'green';
+			  	context.fill();
+			}
+
+			function drawD3(){
 
 				var sampleSVG = d3.select("#output_div")
 					.append("svg")
 					.attr("width", 200)
-					.attr("height", 200);
+					.attr("height", 200)
 
 				for (var i=0; i<10; i++){
 					sampleSVG.append("circle")
