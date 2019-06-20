@@ -6,37 +6,74 @@
 	</head>
 
 	<body>
-		<div id='imgInput'>
+		<div id='image_chooser'>
 			Upload Image : <input type="file" onchange="loadImageFileAsURL(event)" value="chose picture">
 		</div>
 		<div id="images">
-      		<span id="input">
-          		<img id="input_img" src="dalmatian_smaller.jpg" alt="Input pic">
-      		</span>
-	  		<span id="output">
+      		<canvas id="input_canvas" width=200 height=200>
+          		<img id="input_img" alt="Input pic">
+      		</canvas>
+	  		<canvas id="output_canvas" width=200 height=200>
 				output
-          		<img src="dalmatian_smaller.jpg" alt="Output pic">
-      		</span>
+          		<img alt="Output pic">
+      		</canvas>
+			<div id="output_div"></div>
 		</div>
 
 		<script>
          	//alert(d3.select("#output").text());
       	</script>
 		<script>
+			var input_image_data = null; //holds pixel values
+
 			function loadImageFileAsURL(event)
 			{
 				var selectedFile = event.target.files[0];
 				if (selectedFile.type.match("image.*"))
 				{
 					var fileReader = new FileReader();
-					fileReader.onload = function(fileLoadedEvent)
-					{
-						var imageLoaded = document.getElementById("input_img");
-						imageLoaded.src = fileLoadedEvent.target.result;
-					};
-					fileReader.readAsDataURL(selectedFile);
+						fileReader.onload = function(fileLoadedEvent)
+						{
+							var imageInput = document.getElementById("input_img");
+							input_image = fileLoadedEvent.target.result;
+							imageInput.src = input_image; //show the image...
+							imageInput.style.display = 'none'; //...except we don't show the image
+							var input_canvas = document.getElementById("input_canvas");
+							var ctx = input_canvas.getContext("2d");
+							ctx.drawImage(imageInput, 0, 0);
+    						input_image_data = ctx.getImageData(0, 0, input_canvas.width, input_canvas.height).data;
+							startDrawing();
+							//document.getElementById('msg2').innerHTML = "Image data: " + input_image_data.toString();
+						};
+						fileReader.readAsDataURL(selectedFile);
 				}
 			}
+
+			function startDrawing(){
+				var dataset = [],
+				i = 0;
+
+				for(i=0; i<5; i++){
+					dataset.push(Math.round(Math.random()*100));
+				}
+
+				var sampleSVG = d3.select("#output_div")
+					.append("svg")
+					.attr("width", 400)
+					.attr("height", 400);
+
+				sampleSVG.selectAll("circle")
+					.data(dataset)
+					.enter().append("circle")
+					.style("stroke", "gray")
+					.style("fill", "black")
+					.attr("r", 20)
+					.attr("cx", 50)
+					.attr("cy", 20);
+			}
+
+		</script>
+		<script>
 
 		</script>
    	</body>
