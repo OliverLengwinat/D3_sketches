@@ -13,10 +13,10 @@
       		<canvas id="input_canvas" width=200 height=200>
           		<img id="input_img" alt="Input pic">
       		</canvas>
-	  		<canvas id="output_canvas" width=200 height=200>
+	  		<!--<canvas id="output_canvas" width=200 height=200>
 				output
           		<img alt="Output pic">
-      		</canvas>
+      		</canvas>-->
 			<div id="output_div"></div>
 		</div>
 
@@ -50,26 +50,26 @@
 			}
 
 			function startDrawing(){
-				var dataset = [],
-				i = 0;
-
-				for(i=0; i<5; i++){
-					dataset.push(Math.round(Math.random()*100));
-				}
 
 				var sampleSVG = d3.select("#output_div")
 					.append("svg")
-					.attr("width", 400)
-					.attr("height", 400);
+					.attr("width", 200)
+					.attr("height", 200);
 
-				sampleSVG.selectAll("circle")
-					.data(dataset)
-					.enter().append("circle")
+				sampleSVG.append("circle")
 					.style("stroke", "gray")
-					.style("fill", "black")
-					.attr("r", 20)
+					.style("fill", "white")
+					.attr("r", 40)
 					.attr("cx", 50)
-					.attr("cy", 20);
+					.attr("cy", 50)
+					//to animate/change one circle:
+					//.transition()
+					//.delay(100)
+					//.duration(1000)
+					//.attr("r", 10)
+					//.attr("cx", 30)
+					//.style("fill", "black");
+
 			}
 
 		</script>
