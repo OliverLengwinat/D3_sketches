@@ -14,9 +14,8 @@
           		<img id="input_img" alt="Input pic">
       		</canvas>
 	  		<canvas id="output_canvas" width=200 height=200>
-				output
-          		<img alt="Output pic">
-      		</canvas>
+      		<canvas id="hidden_canvas" display=none width=200 height=200>
+			<can
 			<div id="output_div"></div>
 		</div>
 
@@ -51,17 +50,19 @@
 			}
 
 			function paintCanvas() {
-				var canvas = document.getElementById("output_canvas");
+				var previous_error=1000000;
 
+				var output_canvas = document.getElementById("output_canvas");
+				var hidden_canvas = document.getElementById("hidden_canvas");
 				// get the canvas drawing context
-				const context = canvas.getContext('2d');
+				const context = hidden_canvas.getContext('2d');
 
 				// clear the canvas from previous drawing
-				context.clearRect(0, 0, canvas.width, canvas.height);
-				// draw a circle for each datu
+				context.clearRect(0, 0, hidden_canvas.width, hidden_canvas.height);
+				// draw circles
 				for (var i=0; i<100000; i++){
-					var centerX = Math.round(Math.random()*canvas.width);
-					var centerY = Math.round(Math.random()*canvas.height);
+					var centerX = Math.round(Math.random()*hidden_canvas.width);
+					var centerY = Math.round(Math.random()*hidden_canvas.height);
 					var radius = Math.round(Math.random()*40);
 					var brightness = Math.round(Math.random()*255);
 					var color = 'rgb('+brightness+', '+brightness+', '+brightness+')';
@@ -70,11 +71,33 @@
 					context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
 					context.fillStyle = color;
 					context.fill();
+
+					var error = compare(document.getElementById("input_canvas"),hidden_canvas);
+					//console.log("shape "i+1 + ": error = "+error);
+					if (error<previous_error){
+						//console.log("shape " (i+1) + ": error = "+error);
+						console.log("error =" + error);
+						previous_error = error;
+						var outputCtx = output_canvas.getContext('2d');
+						outputCtx.drawImage(hidden_canvas, 0, 0);
+					}
+				}
+
+			}
+
+			function compare(canvas1, canvas2){
+				var error = 0
+				var ctx1 = canvas1.getContext('2d');
+				var imageData1 = ctx1.getImageData(0, 0, canvas1.width, canvas1.height).data; //TODO: make global, never changes
+				var ctx2 = canvas2.getContext('2d');
+				var imageData2 = ctx2.getImageData(0, 0, canvas2.width, canvas2.height).data;
+				for (var i=0; i<imageData1.length; i+=4){
+					error+=Math.abs(imageData1[i]-imageData2[i]);
+				return error;
 				}
 			}
 
 			function drawD3(){
-
 				var sampleSVG = d3.select("#output_div")
 					.append("svg")
 					.attr("width", 200)
