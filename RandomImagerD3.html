@@ -54,6 +54,7 @@
 
 				var output_canvas = document.getElementById("output_canvas");
 				var hidden_canvas = document.getElementById("hidden_canvas");
+				var input_canvas = document.getElementById("input_canvas");
 				// get the canvas drawing context
 				const context = hidden_canvas.getContext('2d');
 
@@ -72,7 +73,7 @@
 					context.fillStyle = color;
 					context.fill();
 
-					var error = compare(document.getElementById("input_canvas"),hidden_canvas);
+					var error = compare(input_canvas,hidden_canvas);
 					//console.log("shape "i+1 + ": error = "+error);
 					if (error<previous_error){
 						//console.log("shape " (i+1) + ": error = "+error);
