@@ -81,8 +81,11 @@
 					outputCtx.drawImage(hidden_canvas, 0, 0);
 				}
 				else{
-					var hiddenCtx = document.getElementById("hidden_canvas").getContext('2d');
+					var hiddenCanvas = document.getElementById("hidden_canvas");
+					var hiddenCtx = hiddenCanvas.getContext('2d');
 					hiddenCtx.drawImage(output_canvas, 0, 0);
+					hiddenCanvas.style.display="none";
+
 				}
 			}
 
