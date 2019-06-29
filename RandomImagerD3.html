@@ -48,7 +48,10 @@
 								imageInput.style.display = 'none'; //...except we don't show the image
 								var input_canvas = document.getElementById("input_canvas");
 								//set proportions as on image
-								//input_canvas.height = input_canvas.width * (this.height / this.width);
+								var all_canvas_height = input_canvas.width * (this.height / this.width);
+								input_canvas.height = all_canvas_height;
+								output_canvas.height = all_canvas_height;
+								hidden_canvas.height = all_canvas_height;
 								var ctx = input_canvas.getContext("2d");
 								ctx.drawImage(imageInput, 0, 0);
 								input_image_data = ctx.getImageData(0, 0, input_canvas.width, input_canvas.height).data;
