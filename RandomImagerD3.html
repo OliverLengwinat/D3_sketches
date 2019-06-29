@@ -35,21 +35,29 @@
 				if (selectedFile.type.match("image.*"))
 				{
 					var fileReader = new FileReader();
-						fileReader.onload = function(fileLoadedEvent)
+					fileReader.onload = function(theFile)
 						{
-							var imageInput = document.getElementById("input_img");
-							input_image = fileLoadedEvent.target.result;
-							imageInput.src = input_image; //show the image...
-							imageInput.style.display = 'none'; //...except we don't show the image
-							var input_canvas = document.getElementById("input_canvas");
-							var ctx = input_canvas.getContext("2d");
-							ctx.drawImage(imageInput, 0, 0);
-    						input_image_data = ctx.getImageData(0, 0, input_canvas.width, input_canvas.height).data;
-							//drawD3();
-							paintCanvas();
-							//document.getElementById('msg2').innerHTML = "Image data: " + input_image_data.toString();
-						};
-						fileReader.readAsDataURL(selectedFile);
+							var input_image = new Image();
+							input_image.src = theFile.target.result;
+							input_image.onload = function() {
+								// access image size here
+								//console.log(this.width);
+
+								var imageInput = document.getElementById("input_img");
+								imageInput.src = this.src; //show the image...
+								imageInput.style.display = 'none'; //...except we don't show the image
+								var input_canvas = document.getElementById("input_canvas");
+								//set proportions as on image
+								//input_canvas.height = input_canvas.width * (this.height / this.width);
+								var ctx = input_canvas.getContext("2d");
+								ctx.drawImage(imageInput, 0, 0);
+								input_image_data = ctx.getImageData(0, 0, input_canvas.width, input_canvas.height).data;
+								//drawD3();
+								paintCanvas();
+								//document.getElementById('msg2').innerHTML = "Image data: " + input_image_data.toString();
+							};
+					};
+					fileReader.readAsDataURL(selectedFile);
 				}
 			}
 
