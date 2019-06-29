@@ -1,9 +1,18 @@
-        body {
+#content {
+   width: 600px;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+body {
+
+   width:1000px;
+   margin:0 auto;
+
         background-color: #FFF; /* example... */
         font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
         color: #333;
-        /*padding: 20px;*/
-        padding: 5px;
+        padding: 20px;
         }
 
         div.outer {

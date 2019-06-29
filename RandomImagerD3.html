@@ -7,6 +7,15 @@
 	</head>
 
 	<body>
+		   <h1>Random Imager</h1>
+		<p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The infinite monkey theorem states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type any given text, such as the complete works of William Shakespeare.</a></p>
+		<p>And a computer drawing random shapes for an infinite amount of time will at some point recreate any image you can think of.</p>
+
+		<p>Because we don't have an infinite amount of time (I certainly don't), why not let the computer draw a random shape and check after every step if the new painting is more similar to the image? That's what we are doing here: Draw a circle of a random size and brightness at a random position but only display the result if it is closer to the uploaded image than before.
+		</p>
+		<p>
+		Try it yourself! Upload an image and let the random drawing begin!
+		</p>
 		<div id='image_chooser'>
 			Upload Image : <input type="file" onchange="loadImageFileAsURL(event)" value="chose picture">
 		</div>
