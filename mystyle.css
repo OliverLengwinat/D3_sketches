@@ -1,0 +1,79 @@
+        body {
+        background-color: #FFF; /* example... */
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        color: #333;
+        /*padding: 20px;*/
+        padding: 5px;
+        }
+
+        div.outer {
+            text-align: center;
+            white-space:nowrap;
+        }
+
+        div.horizontalLarge {
+            display:inline-block;
+            width: 40%;
+        }
+
+        div.horizontalSmall{
+            display:inline-block;
+            /*margin: 0 auto;*/
+            padding: 0;
+            /*width: 15%;*/
+        }
+
+        div.right{
+            margin: 0 auto;
+            float:right;
+        }
+
+        table {
+            /*border: 1px solid black;*/
+        }
+
+        div.withborder {
+            border-width:2px;
+            border-style:solid;
+            border-color:black;
+            width:1250px;
+            background-color: #e3e1ef;
+        }
+
+		.slidecontainer {
+			width: 100%;
+		}
+
+		.slider {
+			-webkit-appearance: none;
+			width: 100%;
+			height: 15px;
+			border-radius: 5px;
+			background: #d3d3d3;
+			outline: none;
+			opacity: 0.7;
+			-webkit-transition: .2s;
+			transition: opacity .2s;
+		}
+
+		.slider:hover {
+			opacity: 1;
+		}
+
+		.slider::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			background: #4CAF50;
+			cursor: pointer;
+		}
+
+		.slider::-moz-range-thumb {
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			background: #D00000;
+			cursor: pointer;
+		}myst

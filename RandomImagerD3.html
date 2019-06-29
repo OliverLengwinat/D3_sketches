@@ -3,6 +3,7 @@
 <html>
 	<head>
 		<script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="mystyle.css">
 	</head>
 
 	<body>
@@ -10,12 +11,12 @@
 			Upload Image : <input type="file" onchange="loadImageFileAsURL(event)" value="chose picture">
 		</div>
 		<div id="images">
-      		<canvas id="input_canvas" width=200 height=200>
+      		<canvas id="input_canvas" width=300 height=200>
           		<img id="input_img" alt="Input pic">
       		</canvas>
-	  		<canvas id="output_canvas" width=200 height=200>
+	  		<canvas id="output_canvas" width=300 height=200>
 			</canvas>
-      		<canvas id="hidden_canvas" display=none width=200 height=200>
+      		<canvas id="hidden_canvas" display=none width=300 height=200>
 			<!--<canvas id="hidden_canvas" width=200 height=200>-->
 			</canvas>
 			<div id="output_div"></div>
