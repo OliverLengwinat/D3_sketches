@@ -40,9 +40,6 @@
 							var input_image = new Image();
 							input_image.src = theFile.target.result;
 							input_image.onload = function() {
-								// access image size here
-								//console.log(this.width);
-
 								var imageInput = document.getElementById("input_img");
 								imageInput.src = this.src; //show the image...
 								imageInput.style.display = 'none'; //...except we don't show the image
@@ -52,8 +49,17 @@
 								input_canvas.height = all_canvas_height;
 								output_canvas.height = all_canvas_height;
 								hidden_canvas.height = all_canvas_height;
+
+								//resize
+								var hidden_resize_canvas = document.createElement("canvas");
+								var hidden_resize_ctx = hidden_resize_canvas.getContext("2d");
+								hidden_resize_canvas.width = input_image.width;
+								hidden_resize_canvas.height = input_image.height;
+								hidden_resize_ctx.drawImage(input_image, 0, 0);
+
 								var ctx = input_canvas.getContext("2d");
-								ctx.drawImage(imageInput, 0, 0);
+								//ctx.drawImage(imageInput, 0, 0);
+								ctx.drawImage(hidden_resize_canvas, 0, 0, hidden_resize_canvas.width, hidden_resize_canvas.height, 0, 0, input_canvas.width, input_canvas.height);
 								input_image_data = ctx.getImageData(0, 0, input_canvas.width, input_canvas.height).data;
 								//drawD3();
 								paintCanvas();
