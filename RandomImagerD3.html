@@ -19,6 +19,8 @@
 			Upload Image : <input type="file" onchange="loadImageFileAsURL(event)" value="chose picture">
 		</div>
 		<div id="images">
+			<img id='input_sample_img' src="dalmatian_free_2_smaller.jpg">
+			<img id='output_sample_img' src="output3.png">
       		<canvas id="input_canvas" width=300 height=200>
           		<img id="input_img" alt="Input pic">
       		</canvas>
@@ -65,6 +67,12 @@
 								hidden_resize_canvas.width = input_image.width;
 								hidden_resize_canvas.height = input_image.height;
 								hidden_resize_ctx.drawImage(input_image, 0, 0);
+
+								//remove preview
+								var sample_img = document.getElementById('input_sample_img');
+								sample_img.parentNode.removeChild(sample_img);
+								sample_img = document.getElementById('output_sample_img');
+								sample_img.parentNode.removeChild(sample_img);
 
 								var ctx = input_canvas.getContext("2d");
 								//ctx.drawImage(imageInput, 0, 0);
