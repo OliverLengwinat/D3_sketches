@@ -2,7 +2,6 @@
 <meta charset="utf-8">
 <html>
 	<head>
-		<script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="mystyle.css">
 	</head>
 
@@ -150,43 +149,7 @@
 				console.log("new error: "+error+"\tprevious: "+previous_error);
 			}
 
-			function drawD3(){
-				var sampleSVG = d3.select("#output_div")
-					.append("svg")
-					.attr("width", 200)
-					.attr("height", 200)
 
-				for (var i=0; i<10; i++){
-					sampleSVG.append("circle")
-					.style("stroke", "gray")
-					.style("fill", "white")
-					.attr("r", Math.round(Math.random()*40))
-					.attr("cx", Math.round(Math.random()*200))
-					.attr("cy", Math.round(Math.random()*200))
-				}
-
-				var lastCircle = sampleSVG.append("circle")
-					.style("stroke", "gray")
-					.style("fill", "black")
-					.attr("r", 40)
-					.attr("cx", 50)
-					.attr("cy", 50)
-					//to animate/change one circle:
-					//.transition()
-					//.delay(100)
-					//.duration(1000)
-					//.attr("r", 10)
-					//.attr("cx", 30)
-					//.style("fill", "black");
-
-				lastCircle
-					.transition()
-					.delay(100)
-					.duration(1000)
-					//.attr("r", 10)
-					//.attr("cx", 30)
-					.style("fill", "red")
-			}
 		</script>
 		<script>
 
